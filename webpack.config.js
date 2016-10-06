@@ -46,11 +46,15 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        loaders: ['style', 'css', 'postcss'],
+        test: /\.(css|scss)$/,
+        loaders: ['style', 'css', 'postcss', 'sass-loader'],
         include:PATHS.css
       },
-
+      {
+        test: /\.handlebars$/,
+        loaders: ['handlebars-loader'],
+        include:PATHS.app
+      },
       {
         test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
         loader: 'file',

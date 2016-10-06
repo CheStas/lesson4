@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "dev": "webpack-dev-server",
     "prebuild": "rimraf dist",
     "build": "webpack -p"
   },
@@ -27,5 +27,11 @@
     "webpack": "^1.13.2",
     "webpack-dashboard": "0.1.8",
     "webpack-dev-server": "1.15.1"
+  },
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "handlebars-loader": "^1.4.0",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2"
   }
 }
