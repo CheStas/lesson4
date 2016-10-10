@@ -7,7 +7,18 @@
   <body>
     <h1 class="title">What film do you wont to find?</h1>
     <input class="request" type="text">
+    <label>
+      Year:
+      <input class="year" type="text">
+    </label>
+    <select name="type" class="type">
+      <option value="">all</option>
+      <option value="movie">movie</option>
+      <option value="series">series</option>
+      <option value="episode">episode</option>
+    </select>
     <button class="search">search it</button>
     <table class="result"></table>
+    <div class="pages"></div>
   </body>
 </html>
