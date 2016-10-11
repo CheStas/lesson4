@@ -1,36 +1,146 @@
 body {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+    background: url("./../static/bgbody.jpg") no-repeat;
+    background-size: cover;
 
-  .title {
-      flex: 100% 1;
-      text-align: center;
-  }
+    .wrap {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        padding: 20px;
+    }
 
-  .request {
-      flex: 4;
-  }
+    header {
+        width: 500px;
+    }
 
-  .search {
-      flex: 1;
-  }
+    .title {
+        flex: 100% 1;
+        color: rgb(222, 207, 207);
+        text-align: center;
+        font-size: 32px;
+    }
 
-  table {
-      flex: 100% 1;
-  }
+    .formWrap {
+        flex: 100% 1;
+        display: flex;
+        margin: 20px 0 0;
+        flex-wrap: wrap;
+        justify-content: center;
 
-  .poster {
-      width: 100px;
-      height: 150px;
+        .request {
+            width: 400px;
+            padding: 10px 10px;
+            outline: none;
+            margin: 0 0 10px 0;
+            border: 0;
+            font-size: 20px;
+        }
 
-      img {
-          width: 100%;
-          height: 100%;
-      }
-  }
+        .search {
+            width: 400px;
+            margin: 10px 0 0;
+            padding: 5px 0;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background-color: #0092c1;
+            color: rgb(222, 207, 207);
+            font-size: 18px;
+            transition: background-color .2s;
+
+            &:hover {
+                background-color: #18637d;
+            }
+        }
+
+        .year {
+            padding: 5px 10px;
+            width: 200px;
+            border: 0;
+            border-right: 1px solid gray;
+        }
+
+        .type {
+            outline: none;
+            border: none;
+            width: 200px;
+            background-color: white;
+        }
+    }
+
+    .result {
+        display: flex;
+        flex: 100% 1;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 20px 0 0;
+        justify-content: center;
+    }
+
+    .pages {
+        flex: 100% 1;
+        margin: 20px 0 0;
+        text-align: center;
+    }
+
+    .list__film {
+        display: flex;
+        width: 204px;
+        margin: 0 5px 10px;
+        cursor: pointer;
+        border: 2px solid transparent;
+        color: rgb(222, 207, 207);
+        transition: background-color .2s, border-color .2s, color .2s;
+
+        .film__info {
+            display: flex;
+            flex-direction: column;
+
+            img {
+                width: 200px;
+                height: 300px;
+            }
+
+            h1 {
+                text-align: center;
+                margin: 5px 0 0;
+            }
+
+            p {
+                margin-top: 5px;
+                text-align: center;
+            }
+        }
+
+        &:hover {
+            background-color: gold;
+            border-color: gold;
+            color: #0092c1;
+        }
+    }
+
+    .fav {
+        background-color: gold;
+        border-color: gold;
+        color: #0092c1;
+    }
+
+    .goToPage {
+        margin: 0 5px;
+        color: rgb(222, 207, 207);
+        cursor: pointer;
+        transition: color .2s;
+
+        &:hover {
+            color: #0092c1;
+        }
+    }
+
+    .currentPage {
+        color: #0092c1;
+    }
 }
 
-.goToPage {
-    margin: 0 5px;
-}
+

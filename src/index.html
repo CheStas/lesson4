@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>films!!</title>
-  </head>
-  <body>
-    <h1 class="title">What film do you wont to find?</h1>
-    <input class="request" type="text">
-    <label>
-      Year:
-      <input class="year" type="text">
-    </label>
-    <select name="type" class="type">
-      <option value="">all</option>
-      <option value="movie">movie</option>
-      <option value="series">series</option>
-      <option value="episode">episode</option>
-    </select>
-    <button class="search">search it</button>
-    <table class="result"></table>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <h1 class="title">What movie do you want to find?</h1>
+        <div class="formWrap">
+            <input class="request" type="text" placeholder="type here..">
+            <input class="year" type="text" placeholder="Year">
+            <select name="type" class="type">
+                <option value="">all</option>
+                <option value="movie">movie</option>
+                <option value="series">series</option>
+                <option value="episode">episode</option>
+            </select>
+            <button class="search">search it!</button>
+        </div>
+    </header>
+    <div class="result"></div>
     <div class="pages"></div>
-  </body>
+</div>
+</body>
 </html>

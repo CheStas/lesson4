@@ -9,7 +9,7 @@ const PATHS = {
   app: path.join(__dirname, 'src/js/'),
   html: path.join(__dirname, 'src'),
   css: path.join(__dirname, 'src/style/'),
-  images:path.join(__dirname,'src/assets/'),
+  images:path.join(__dirname,'src/static/'),
   build: path.join(__dirname, 'dist')
 };
 
@@ -56,7 +56,7 @@ module.exports = {
         include:PATHS.app
       },
       {
-        test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
         loader: 'file',
         query: {
           name: '[path][name].[ext]'
