@@ -1,16 +1,13 @@
 require('./../style/main.scss');
 const noPoster = require('./../static/noposter.png');
 const film = require('./film.handlebars');
-//df23dba7
-//http://img.omdbapi.com/?i=tt2294629&apikey=df23dba7
 
-/* Записываем обьект в локальное хранилище, и извлекаем его */
+
 //localStorage.setItem('test', JSON.stringify(test));
 //const localTest = JSON.parse(localStorage.getItem('test'));
 
-//1. текущая страница выделяется синим - при переходе на другу страницу номер ее выделяется синим, другие номер - белые.
-//2. выводить номера только первой последней, текущей и по 3 ближайшие страницы от текущей
-//3. записать favoriteList в локал стор, и извлекать его оттуда
+//TODO fix pageList when pages > 30
+//TODO favoriteList to localStorage
 
 const button = document.getElementsByClassName('search');
 const request = document.getElementsByClassName('request');
@@ -32,24 +29,36 @@ request[0].addEventListener('keypress', function (e) {
         searchIt()
     }
 });
+result[0].addEventListener('mouseover', function () {
+    if (event.target.className === 'addToFavorite') {
+        const wrap = event.target.parentElement.parentElement;
+        wrap.classList.add('hover')
+    }
+});
+result[0].addEventListener('mouseout', function () {
+    if (event.target.className === 'addToFavorite') {
+        const wrap = event.target.parentElement.parentElement;
+        wrap.classList.remove('hover')
+    }
+});
 
 function addFilmToFavorite(e) {
     let resultListId = true;
 
     if (e.target.className === 'addToFavorite') {
-        const id = (event.target.getAttribute('data-id'))
+        const id = (event.target.getAttribute('data-id'));
         const wrap = event.target.parentElement.parentElement;
 
         resultList.forEach(function (el) {
             if (el.imdbID === id) {
                 if (favoriteList.indexOf(el) === -1) {
-                    favoriteList.push(el)
+                    favoriteList.push(el);
                     favoriteID.push(id);
                     wrap.classList.add('fav')
                 } else {
-                    favoriteList.splice(favoriteList.indexOf(el), 1)
-                    favoriteID.splice(favoriteList.indexOf(el), 1)
-                    wrap.classList.remove('fav')
+                    favoriteList.splice(favoriteList.indexOf(el), 1);
+                    favoriteID.splice(favoriteList.indexOf(el), 1);
+                    wrap.classList.remove('fav');
                 }
                 resultListId = false;
             }
@@ -58,8 +67,8 @@ function addFilmToFavorite(e) {
         if (resultListId) {
             favoriteList.forEach(function (el, i) {
                 if (el.imdbID === id) {
-                    favoriteList.splice(i, 1)
-                    favoriteID.splice(i, 1)
+                    favoriteList.splice(i, 1);
+                    favoriteID.splice(i, 1);
                     wrap.classList.remove('fav')
                 }
             })
@@ -71,16 +80,24 @@ function goToPage() {
     if (event.target.className == 'goToPage') {
         result[0].innerHTML = '';
 
-        event.target.classList.add('currentPage')
+        const prevPage = document.getElementsByClassName('currentPage');
+        prevPage[0].classList.remove('currentPage');
+
+        const thisPage = event.target;
+        thisPage.classList.add('currentPage');
 
         if (event.target.innerHTML == 'first') {
-            searchIt(1)
+            currentPage = 1;
+            searchIt(1);
         } else if (event.target.innerHTML == 'last') {
-            searchIt(pageArr.length)
+            currentPage = pageArr.length;
+            searchIt(pageArr.length);
         } else  {
-            searchIt(event.target.innerHTML)
+            currentPage = event.target.innerHTML;
+            searchIt(event.target.innerHTML);
         }
     }
+    return currentPage;
 }
 
 function pageList() {
@@ -97,18 +114,20 @@ function pageList() {
             pageNumber = i + 1;
         }
 
-
         toPage.innerHTML = pageNumber;
         toPage.classList.add('goToPage');
         pagesWrap[0].appendChild(toPage);
-    })
+    });
+    return currentPage = 1;
 }
 
 function searchIt(page = 1) {
     result[0].innerHTML = '';
-    pagesWrap[0].innerHTML = '';
     resultList = [];
-    pageArr = [];
+    if (page === 1) {
+        pagesWrap[0].innerHTML = '';
+        pageArr = [];
+    }
 
     const value = request[0].value;
     const type = typeEl[0].value;
@@ -165,13 +184,15 @@ function searchIt(page = 1) {
                     result[0].appendChild(wrap);
                 });
 
-                for(let i = 1; i < pages + 1; i++) {
-                    pageArr.push(i)
+                if (page === 1) {
+                    for(let i = 1; i < pages + 1; i++) {
+                        pageArr.push(i)
+                    }
+                    pageList();
                 }
-                pageList();
             }
         }
-    }
+    };
     result[0].innerHTML = 'search..';
 }
 
